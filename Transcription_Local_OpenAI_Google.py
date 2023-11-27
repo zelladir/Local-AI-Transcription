@@ -141,6 +141,10 @@ if not input_audio_file_path:
     exit(1)
 print(f"Converting audio file to WAV format...")
 
+output_folder = "output_segments"
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
 input_filename, input_extension = os.path.splitext(os.path.basename(input_audio_file_path))
 output_audio_file_path = os.path.join(os.path.dirname(input_audio_file_path), f'{input_filename}.wav')
 
@@ -177,8 +181,8 @@ while start < len(mono_audio):
     end = min(start + min_segment_len, len(mono_audio))
     segment = mono_audio[start:end]
     if len(segment) > 0:
-        segment_path = os.path.join("output_segments", f'segment_{len(segment_paths)}.wav')
-        segment.export(segment_path, format="wav")
+        segment_path = os.path.join(output_folder, f'segment_{len(segment_paths)}.wav')
+        segment.export(segment_path, format="wav")  # This line should now work without error
         segment_paths.append(segment_path)
         sample_rates.append(segment.frame_rate)  # Store the sample rate of the segment
     start = end
