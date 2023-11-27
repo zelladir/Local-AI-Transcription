@@ -1,6 +1,3 @@
-Sure, I'll provide the README content in Markdown format for you. Here's the README for your Audio Transcription and Summarization Tool:
-
-```markdown
 # Audio Transcription and Summarization Tool
 
 ## Overview
